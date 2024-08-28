@@ -4,7 +4,7 @@ const { uploadImageToCloudinary } = require("../Utils/ImageUploader");
 const Section = require("../Models/Section");
 const SubSection = require("../Models/SubSection");
 const Category =require( "../Models/Category");
-const CourseProgress= require("../Models/courseProgress")
+const courseProgress= require("../Models/CourseProgress")
 const { convertSecondsToDuration } = require("../Utils/secToDuration")
 
 exports.createCourse=async(req,res)=>
@@ -375,7 +375,7 @@ exports.getFullCourseDetails = async (req, res) => {
         })
         .exec()
   
-      let courseProgressCount = await CourseProgress.findOne({
+      let courseProgressCount = await courseProgress.findOne({
         courseID: courseId,
         userId: userId,
       })

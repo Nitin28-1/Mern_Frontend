@@ -1,5 +1,5 @@
 const { instance } = require("../Config/razorpay")
-const Course = require("../models/Course")
+const Course = require("../Models/Course")
 const crypto = require("crypto")
 const User = require("../Models/User")
 const mailSender = require("../Utils/MailSender")
@@ -8,7 +8,7 @@ const {
   courseEnrollmentEmail,
 } = require("../mail/templates/courseEnrollmentEmail")
 const { paymentSuccessEmail } = require("../mail/templates/paymentSuccessEmail")
-const CourseProgress = require("../Models/CourseProgress")
+const courseProgress = require("../Models/CourseProgress")
 const mailsender = require("../Utils/MailSender")
 
 
@@ -186,7 +186,7 @@ const enrollStudents = async (courses, userId, res) => {
         }
         console.log("Updated course: ", enrolledCourse)
   
-        const courseProgress = await CourseProgress.create({
+        const CourseProgress = await courseProgress.create({
           courseID: courseId,
           userId: userId,
           completedVideos: [],
@@ -197,7 +197,7 @@ const enrollStudents = async (courses, userId, res) => {
           {
             $push: {
               courses: courseId,
-              courseProgress: courseProgress._id,
+              courseProgress: CourseProgress._id,
             },
           },
           { new: true }

@@ -65,7 +65,8 @@ export default async function BuyCourse(
         throw new Error(orderResponse.data.message)
       }
       console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse.data)
-   
+     
+      
       // Direct call
    
   
@@ -102,7 +103,7 @@ export default async function BuyCourse(
       // })
     } catch (error) {
       console.log("PAYMENT API ERROR............", error)
-      toast.error("Could Not make Payment.")
+      toast.error(error)
     }
     toast.dismiss(toastId)
   }

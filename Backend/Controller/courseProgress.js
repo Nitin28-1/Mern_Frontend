@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
-const Section = require("../models/Section")
-const SubSection = require("../models/Subsection")
-const CourseProgress = require("../models/CourseProgress")
-const Course = require("../models/Course")
+const Section = require("../Models/Section")
+const SubSection = require("../Models/SubSection")
+const courseProgress = require("../Models/CourseProgress")
+const Course = require("../Models/Course")
 
 
 exports.updateCourseProgress = async (req, res) => {
@@ -17,12 +17,12 @@ exports.updateCourseProgress = async (req, res) => {
       }
   
       // Find the course progress document for the user and course
-      let courseProgress = await CourseProgress.findOne({
+      let CourseProgress = await courseProgress.findOne({
         courseID: courseId,
         userId: userId,
       })
   
-      if (!courseProgress) {
+      if (!CourseProgress) {
         // If course progress doesn't exist, create a new one
         return res.status(404).json({
           success: false,
@@ -30,16 +30,16 @@ exports.updateCourseProgress = async (req, res) => {
         })
       } else {
         // If course progress exists, check if the subsection is already completed
-        if (courseProgress.completedVideos.includes(subsectionId)) {
+        if (CourseProgress.completedVideos.includes(subsectionId)) {
           return res.status(400).json({ error: "Subsection already completed" })
         }
   
         // Push the subsection into the completedVideos array
-        courseProgress.completedVideos.push(subsectionId)
+        CourseProgress.completedVideos.push(subsectionId)
       }
   
       // Save the updated course progress
-      await courseProgress.save()
+      await CourseProgress.save()
   
       return res.status(200).json({ message: "Course progress updated" })
     } catch (error) {

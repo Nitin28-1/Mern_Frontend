@@ -5,7 +5,7 @@ const bcrypt=require("bcrypt");
 const Profile = require("../Models/Profile");
 const jwt=require("jsonwebtoken");
 const mailsender = require("../Utils/MailSender");
-const { passwordUpdated } = require("../mail/templates/PasswordUpdate");
+const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 
 //OTP Generator
 exports.sendOTP = async (req,res)=>
