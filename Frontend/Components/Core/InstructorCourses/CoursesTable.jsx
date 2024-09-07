@@ -35,7 +35,7 @@ const CoursesTable = () => {
         await deleteCourse({ courseId: courseId }, token)
         const result = await fetchInstructorCourses(token)
         if (result) {
-          setCourses(result)
+          setCourse(result)
         }
         setConfirmationModal(null)
         setLoading(false)

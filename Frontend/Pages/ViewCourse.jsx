@@ -18,12 +18,7 @@ const ViewCourse = () => {
     const { token } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const [reviewModal, setReviewModal] = useState(false)
-    const {
-      courseSectionData,
-      courseEntireData,
-      totalNoOfLectures,
-      completedLectures,
-    } = useSelector((state) => state.viewCourse)
+   
 
     useEffect(() => {
       ;(async () => {
